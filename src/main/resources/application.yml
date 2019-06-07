@@ -1,0 +1,9 @@
+server:
+  compression:
+    enabled: true
+  max-http-header-size: 16384
+  port: 8080
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
