@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Users N Photos
+  description: REST api interacting with Facebook Graph API
+  version: 0.0.1
+tags:
+  - name: form
+    description: Operations dealing with User data
+servers:
+  - url: /api/v1
+paths:
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Loading of user data
+      description: Invoke loading of user data.
+      operationId: loadUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PostUserRequest"
+
+        description: Object containing user id and access token.
+        required: true
+      responses:
+        "200":
+          description: User data sucessfuly loaded and stored.
+        "400":
+          description: An error occured during loading of data.
+  "/users/{userId}":
+    get:
+      tags:
+        - Users
+      summary: Find user by ID
+      description: Returns data of single user
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to return
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Data of the specified user.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Requested user doesn't exist.
+    delete:
+      tags:
+        - Users
+      summary: Delete user by ID
+      description: Deletes data of single user
+      operationId: deleteUserById
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: The user has been deleted.
+        "404":
+          description: Specified user doesn't exist.
+  "/users/{userId}/photos":
+    get:
+      tags:
+        - Photos
+      summary: Find photos of user with given ID
+      description: Returns array of photos of user with given ID
+      operationId: getPhotosByUserId
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user whose photos should be returned
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Photos of the specified user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Photo"
+        "404":
+          description: Requested user doesn't exist.
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          description: Id of the user
+          type: number
+          example: 123456
+        name:
+          description: Name of the user
+          type: string
+          example: Eric Draven
+    PostUserRequest:
+      type: object
+      properties:
+        id:
+          description: Id of the user
+          type: number
+          example: 123456
+        accessToken:
+          description: Facebook access token of the user
+          type: string
+    Photo:
+      type: object
+      properties:
+        id:
+          description: Id of the photo
+          type: number
+        facebookUrl:
+          description: URL of the photo on Facebook
+          type: string
+          format: uri
+        imageUrl:
+          description: URL of the photo
+          type: string
+          format: uri
+        album:
+          description: Name of the album to which the photo benumbers (if any)
+          type: string

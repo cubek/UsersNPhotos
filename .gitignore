@@ -1,6 +1,7 @@
-HELP.md
-/target/
-!.mvn/wrapper/maven-wrapper.jar
+### Project ###
+**/bin/
+**/target/
+**/gen/
 
 ### STS ###
 .apt_generated
@@ -17,13 +18,8 @@ HELP.md
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/build/
-
-### VS Code ###
-.vscode/
+### OpenAPI Generator ###
+.openapi-generator-ignore
+**/.openapi-generator/*
+/src/README.md
+/src/pom.xml
