@@ -3,9 +3,9 @@ package sk.cubi.usersnphotos.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MvcResult;
 import sk.cubi.usersnphotos.AbstractUsersNPhotosIntegrationTest;
-import sk.cubi.usersnphotos.gen.user.model.Photo;
-import sk.cubi.usersnphotos.gen.user.model.PostUserRequest;
-import sk.cubi.usersnphotos.gen.user.model.User;
+import sk.cubi.usersnphotos.gen.user.model.PhotoDto;
+import sk.cubi.usersnphotos.gen.user.model.PostUserDto;
+import sk.cubi.usersnphotos.gen.user.model.UserDto;
 import sk.cubi.usersnphotos.util.TestUtil;
 
 import java.math.BigDecimal;
@@ -31,7 +31,7 @@ public class UserControllerIntegrationTest extends AbstractUsersNPhotosIntegrati
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(TestUtil.APPLICATION_JSON))
 			.andReturn();
-		List<Photo> photos = TestUtil.mapResponseToList(result, Photo.class);
+		List<PhotoDto> photos = TestUtil.mapResponseToList(result, PhotoDto.class);
 		assertThat(photos).isEmpty();
 	}
 
@@ -41,13 +41,13 @@ public class UserControllerIntegrationTest extends AbstractUsersNPhotosIntegrati
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(TestUtil.APPLICATION_JSON))
 			.andReturn();
-		User user = TestUtil.mapResponseToObject(result, User.class);
-		assertThat(user).isEqualTo(new User().id(new BigDecimal(123456)).name("Eric Draven"));
+		UserDto user = TestUtil.mapResponseToObject(result, UserDto.class);
+		assertThat(user).isEqualTo(new UserDto().id(new BigDecimal(123456)).name("Eric Draven"));
 	}
 
 	@Test
 	public void loadUser() throws Exception {
-		PostUserRequest userRequest = new PostUserRequest().accessToken("mock access token").id(new BigDecimal(123456));
+		PostUserDto userRequest = new PostUserDto().accessToken("mock access token").id(new BigDecimal(123456));
 		mockMvc.perform(TestUtil.createPostRequest(userRequest, TestUtil.getUsersPath("")))
 			.andExpect(status().isNoContent());
 	}

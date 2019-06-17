@@ -24,7 +24,7 @@ public class TestUtil {
 	 * @return concatenated base api path with Users endpoint and given suffix
 	 */
 	public static String getUsersPath(String pathSuffix) {
-		return ControllerUtil.APIT_PATH.concat("/users/").concat(pathSuffix);
+		return ControllerUtil.API_PATH.concat("/users/").concat(pathSuffix);
 	}
 
 	/**

@@ -12,7 +12,8 @@
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
+### IDE ###
+.editorconfig
 .idea
 *.iws
 *.iml

@@ -7,3 +7,16 @@ server:
 spring:
   main:
     allow-bean-definition-overriding: true
+
+--- # test profile
+spring:
+  datasource:
+    url: jdbc:h2:mem:testDatabase;MODE=PostgreSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  #    url: jdbc:postgresql://localhost:5433/test
+  #    username:
+  #    password:
+  #    driver-class-name: org.postgresql.Driver
+  output:
+    ansi:
+      enabled: always
+  profiles: test

@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = {UsersNPhotosApplication.class})
 public abstract class AbstractUsersNPhotosIntegrationTest {
 
 	@Autowired

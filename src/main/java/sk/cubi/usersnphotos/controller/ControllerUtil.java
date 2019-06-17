@@ -5,7 +5,7 @@ package sk.cubi.usersnphotos.controller;
  */
 public final class ControllerUtil {
 
-	public static final String APIT_PATH = "/api/vi";
+	public static final String API_PATH = "/api/v1";
 
 	private ControllerUtil() {
 		/*
