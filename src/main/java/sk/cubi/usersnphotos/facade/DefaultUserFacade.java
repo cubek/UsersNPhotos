@@ -3,6 +3,7 @@ package sk.cubi.usersnphotos.facade;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.cubi.usersnphotos.client.model.FacebookUser;
 import sk.cubi.usersnphotos.gen.user.model.PostUserDto;
 import sk.cubi.usersnphotos.gen.user.model.UserDto;
 import sk.cubi.usersnphotos.persistence.entity.User;
@@ -30,8 +31,7 @@ public class DefaultUserFacade implements UserFacade {
 
 	@Override
 	public void loadUser(PostUserDto postData) {
-		User user = facebookService.getUser(postData);
-		userService.save(modelMapper.map(user, User.class));
+		userService.save(modelMapper.map(facebookService.getUser(postData), User.class));
 	}
 
 	@Override

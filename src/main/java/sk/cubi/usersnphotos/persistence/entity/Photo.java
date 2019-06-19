@@ -1,9 +1,6 @@
 package sk.cubi.usersnphotos.persistence.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
@@ -36,6 +33,7 @@ public class Photo {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
+	@ToString.Exclude
 	private User user;
 
 }

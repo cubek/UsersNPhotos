@@ -40,6 +40,7 @@ public class User {
 	private List<Photo> photos;
 
 	public User setPhotos(Collection<Photo> photos) {
+		photos.forEach(x -> x.setUser(this));
 		this.photos = new ArrayList<>(photos);
 		return this;
 	}

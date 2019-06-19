@@ -108,6 +108,15 @@ components:
           description: Name of the user
           type: string
           example: Eric Draven
+        gender:
+          description: Gender of the user
+          type: string
+          example: Male
+        profilePicture:
+          description: Link of users profile picture
+          type: string
+          format: uri
+          example: https://facebook.photo.url
     PostUserDto:
       type: object
       properties:
